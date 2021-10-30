@@ -28,7 +28,7 @@
 //***************************************************************************
 // Automatically generated.                                                 *
 //***************************************************************************
-// IMC XML MD5: 5563261871977bdb0b45e3d1e53b575b                            *
+// IMC XML MD5: 21b03be7d737aa06e5dfbad56df2b911                            *
 //***************************************************************************
 
 #ifndef DUNE_IMC_DEFINITIONS_HPP_INCLUDED_
@@ -25750,6 +25750,114 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 29;
+      }
+
+      void
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+    };
+
+    //! Expanding Square.
+    class ExpandingSquare: public Maneuver
+    {
+    public:
+      //! Flags.
+      enum FlagsBits
+      {
+        //! Square Curve.
+        FLG_SQUARE_CURVE = 0x01,
+        //! First Curve Right.
+        FLG_CURVE_RIGHT = 0x02
+      };
+
+      //! Latitude WGS-84.
+      fp64_t lat;
+      //! Longitude WGS-84.
+      fp64_t lon;
+      //! Z Reference.
+      fp32_t z;
+      //! Z Units.
+      uint8_t z_units;
+      //! Width.
+      fp32_t width;
+      //! Horizontal Step.
+      fp32_t hstep;
+      //! Speed.
+      fp32_t speed;
+      //! Speed Units.
+      uint8_t speed_units;
+      //! Bearing.
+      fp64_t bearing;
+      //! Cross Angle.
+      fp64_t cross_angle;
+      //! Length.
+      fp32_t length;
+      //! Curve Offset.
+      uint8_t coff;
+      //! Angular Aperture.
+      fp32_t angaperture;
+      //! Range.
+      uint16_t range;
+      //! Overlap.
+      uint8_t overlap;
+      //! Flags.
+      uint8_t flags;
+      //! Custom settings for maneuver.
+      std::string custom;
+
+      static uint16_t
+      getIdStatic(void)
+      {
+        return 3001;
+      }
+
+      ExpandingSquare(void);
+
+      ExpandingSquare*
+      clone(void) const
+      {
+        return new ExpandingSquare(*this);
+      }
+
+      void
+      clear(void);
+
+      bool
+      fieldsEqual(const Message& msg__) const;
+
+      int
+      validate(void) const;
+
+      uint8_t*
+      serializeFields(uint8_t* bfr__) const;
+
+      uint16_t
+      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      getId(void) const
+      {
+        return ExpandingSquare::getIdStatic();
+      }
+
+      const char*
+      getName(void) const
+      {
+        return "ExpandingSquare";
+      }
+
+      unsigned
+      getFixedSerializationSize(void) const
+      {
+        return 63;
+      }
+
+      unsigned
+      getVariableSerializationSize(void) const
+      {
+        return IMC::getSerializationSize(custom);
       }
 
       void

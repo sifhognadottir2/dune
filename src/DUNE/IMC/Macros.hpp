@@ -28,7 +28,7 @@
 //***************************************************************************
 // Automatically generated.                                                 *
 //***************************************************************************
-// IMC XML MD5: 5563261871977bdb0b45e3d1e53b575b                            *
+// IMC XML MD5: 21b03be7d737aa06e5dfbad56df2b911                            *
 //***************************************************************************
 
 #ifndef DUNE_IMC_MACROS_HPP_INCLUDED_
@@ -670,5 +670,7 @@
 #define DUNE_IMC_TOTALMAGINTENSITY 2006
 //! HomePosition identification number.
 #define DUNE_IMC_HOMEPOSITION 909
+//! ExpandingSquare identification number.
+#define DUNE_IMC_EXPANDINGSQUARE 3001
 
 #endif

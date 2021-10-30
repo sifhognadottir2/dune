@@ -28,7 +28,7 @@
 //***************************************************************************
 // Automatically generated.                                                 *
 //***************************************************************************
-// IMC XML MD5: 5563261871977bdb0b45e3d1e53b575b                            *
+// IMC XML MD5: 21b03be7d737aa06e5dfbad56df2b911                            *
 //***************************************************************************
 
 // ISO C++ 98 headers.
@@ -27256,6 +27256,167 @@ namespace DUNE
       IMC::toJSON(os__, "height", height, nindent__);
       IMC::toJSON(os__, "depth", depth, nindent__);
       IMC::toJSON(os__, "alt", alt, nindent__);
+    }
+
+    ExpandingSquare::ExpandingSquare(void)
+    {
+      m_header.mgid = 3001;
+      clear();
+    }
+
+    void
+    ExpandingSquare::clear(void)
+    {
+      lat = 0;
+      lon = 0;
+      z = 0;
+      z_units = 0;
+      width = 0;
+      hstep = 0;
+      speed = 0;
+      speed_units = 0;
+      bearing = 0;
+      cross_angle = 0;
+      length = 0;
+      coff = 0;
+      angaperture = 0;
+      range = 0;
+      overlap = 0;
+      flags = 0;
+      custom.clear();
+    }
+
+    bool
+    ExpandingSquare::fieldsEqual(const Message& msg__) const
+    {
+      const IMC::ExpandingSquare& other__ = static_cast<const ExpandingSquare&>(msg__);
+      if (lat != other__.lat) return false;
+      if (lon != other__.lon) return false;
+      if (z != other__.z) return false;
+      if (z_units != other__.z_units) return false;
+      if (width != other__.width) return false;
+      if (hstep != other__.hstep) return false;
+      if (speed != other__.speed) return false;
+      if (speed_units != other__.speed_units) return false;
+      if (bearing != other__.bearing) return false;
+      if (cross_angle != other__.cross_angle) return false;
+      if (length != other__.length) return false;
+      if (coff != other__.coff) return false;
+      if (angaperture != other__.angaperture) return false;
+      if (range != other__.range) return false;
+      if (overlap != other__.overlap) return false;
+      if (flags != other__.flags) return false;
+      if (custom != other__.custom) return false;
+      return true;
+    }
+
+    int
+    ExpandingSquare::validate(void) const
+    {
+      if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
+      if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
+      if (width < 0) return false;
+      if (hstep < 0) return false;
+      if (bearing < 0 || bearing > 6.283185307179586) return false;
+      if (cross_angle < -1.047197551197 || cross_angle > 1.047197551197) return false;
+      if (length < 0) return false;
+      if (angaperture < -3.141592653589793 || angaperture > 3.141592653589793) return false;
+      if (overlap > 100) return false;
+      return true;
+    }
+
+    uint8_t*
+    ExpandingSquare::serializeFields(uint8_t* bfr__) const
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(lat, ptr__);
+      ptr__ += IMC::serialize(lon, ptr__);
+      ptr__ += IMC::serialize(z, ptr__);
+      ptr__ += IMC::serialize(z_units, ptr__);
+      ptr__ += IMC::serialize(width, ptr__);
+      ptr__ += IMC::serialize(hstep, ptr__);
+      ptr__ += IMC::serialize(speed, ptr__);
+      ptr__ += IMC::serialize(speed_units, ptr__);
+      ptr__ += IMC::serialize(bearing, ptr__);
+      ptr__ += IMC::serialize(cross_angle, ptr__);
+      ptr__ += IMC::serialize(length, ptr__);
+      ptr__ += IMC::serialize(coff, ptr__);
+      ptr__ += IMC::serialize(angaperture, ptr__);
+      ptr__ += IMC::serialize(range, ptr__);
+      ptr__ += IMC::serialize(overlap, ptr__);
+      ptr__ += IMC::serialize(flags, ptr__);
+      ptr__ += IMC::serialize(custom, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    ExpandingSquare::deserializeFields(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(lat, bfr__, size__);
+      bfr__ += IMC::deserialize(lon, bfr__, size__);
+      bfr__ += IMC::deserialize(z, bfr__, size__);
+      bfr__ += IMC::deserialize(z_units, bfr__, size__);
+      bfr__ += IMC::deserialize(width, bfr__, size__);
+      bfr__ += IMC::deserialize(hstep, bfr__, size__);
+      bfr__ += IMC::deserialize(speed, bfr__, size__);
+      bfr__ += IMC::deserialize(speed_units, bfr__, size__);
+      bfr__ += IMC::deserialize(bearing, bfr__, size__);
+      bfr__ += IMC::deserialize(cross_angle, bfr__, size__);
+      bfr__ += IMC::deserialize(length, bfr__, size__);
+      bfr__ += IMC::deserialize(coff, bfr__, size__);
+      bfr__ += IMC::deserialize(angaperture, bfr__, size__);
+      bfr__ += IMC::deserialize(range, bfr__, size__);
+      bfr__ += IMC::deserialize(overlap, bfr__, size__);
+      bfr__ += IMC::deserialize(flags, bfr__, size__);
+      bfr__ += IMC::deserialize(custom, bfr__, size__);
+      return bfr__ - start__;
+    }
+
+    uint16_t
+    ExpandingSquare::reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::reverseDeserialize(lat, bfr__, size__);
+      bfr__ += IMC::reverseDeserialize(lon, bfr__, size__);
+      bfr__ += IMC::reverseDeserialize(z, bfr__, size__);
+      bfr__ += IMC::deserialize(z_units, bfr__, size__);
+      bfr__ += IMC::reverseDeserialize(width, bfr__, size__);
+      bfr__ += IMC::reverseDeserialize(hstep, bfr__, size__);
+      bfr__ += IMC::reverseDeserialize(speed, bfr__, size__);
+      bfr__ += IMC::deserialize(speed_units, bfr__, size__);
+      bfr__ += IMC::reverseDeserialize(bearing, bfr__, size__);
+      bfr__ += IMC::reverseDeserialize(cross_angle, bfr__, size__);
+      bfr__ += IMC::reverseDeserialize(length, bfr__, size__);
+      bfr__ += IMC::deserialize(coff, bfr__, size__);
+      bfr__ += IMC::reverseDeserialize(angaperture, bfr__, size__);
+      bfr__ += IMC::reverseDeserialize(range, bfr__, size__);
+      bfr__ += IMC::deserialize(overlap, bfr__, size__);
+      bfr__ += IMC::deserialize(flags, bfr__, size__);
+      bfr__ += IMC::reverseDeserialize(custom, bfr__, size__);
+      return bfr__ - start__;
+    }
+
+    void
+    ExpandingSquare::fieldsToJSON(std::ostream& os__, unsigned nindent__) const
+    {
+      IMC::toJSON(os__, "lat", lat, nindent__);
+      IMC::toJSON(os__, "lon", lon, nindent__);
+      IMC::toJSON(os__, "z", z, nindent__);
+      IMC::toJSON(os__, "z_units", z_units, nindent__);
+      IMC::toJSON(os__, "width", width, nindent__);
+      IMC::toJSON(os__, "hstep", hstep, nindent__);
+      IMC::toJSON(os__, "speed", speed, nindent__);
+      IMC::toJSON(os__, "speed_units", speed_units, nindent__);
+      IMC::toJSON(os__, "bearing", bearing, nindent__);
+      IMC::toJSON(os__, "cross_angle", cross_angle, nindent__);
+      IMC::toJSON(os__, "length", length, nindent__);
+      IMC::toJSON(os__, "coff", coff, nindent__);
+      IMC::toJSON(os__, "angaperture", angaperture, nindent__);
+      IMC::toJSON(os__, "range", range, nindent__);
+      IMC::toJSON(os__, "overlap", overlap, nindent__);
+      IMC::toJSON(os__, "flags", flags, nindent__);
+      IMC::toJSON(os__, "custom", custom, nindent__);
     }
   }
 }
