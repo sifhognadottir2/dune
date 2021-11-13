@@ -28,7 +28,7 @@
 //***************************************************************************
 // Automatically generated.                                                 *
 //***************************************************************************
-// IMC XML MD5: 21b03be7d737aa06e5dfbad56df2b911                            *
+// IMC XML MD5: cdbdee4b3f5278d2b2c54f0cc0052430                            *
 //***************************************************************************
 
 #ifndef DUNE_IMC_DEFINITIONS_HPP_INCLUDED_
@@ -25760,15 +25760,6 @@ namespace DUNE
     class ExpandingSquare: public Maneuver
     {
     public:
-      //! Flags.
-      enum FlagsBits
-      {
-        //! Square Curve.
-        FLG_SQUARE_CURVE = 0x01,
-        //! First Curve Right.
-        FLG_CURVE_RIGHT = 0x02
-      };
-
       //! Latitude WGS-84.
       fp64_t lat;
       //! Longitude WGS-84.
@@ -25787,20 +25778,8 @@ namespace DUNE
       uint8_t speed_units;
       //! Bearing.
       fp64_t bearing;
-      //! Cross Angle.
-      fp64_t cross_angle;
-      //! Length.
-      fp32_t length;
-      //! Curve Offset.
-      uint8_t coff;
-      //! Angular Aperture.
-      fp32_t angaperture;
-      //! Range.
-      uint16_t range;
-      //! Overlap.
-      uint8_t overlap;
-      //! Flags.
-      uint8_t flags;
+      //! Curve_right.
+      uint8_t curve_right;
       //! Custom settings for maneuver.
       std::string custom;
 
@@ -25851,7 +25830,7 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 63;
+        return 43;
       }
 
       unsigned
