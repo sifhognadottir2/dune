@@ -113,7 +113,7 @@ namespace Maneuver
           
           lat = maneuver->lat; 
           lon = maneuver->lon;
-
+          
           if (iteration % 2 == 0) {
             x_next = x_dir*step_amount*m_hstep + x_prev;
             y_next = y_prev;
@@ -130,9 +130,6 @@ namespace Maneuver
           x_prev = x_next;
           y_prev = y_next;
           
-          inf("x_next before rotate: %f", x_next);
-          inf("y_next before rotate: %f", y_next);
-
           // Rotate w.r.t. bearing angle
           Angles::rotate(maneuver->bearing,false,x_next,y_next);
 
@@ -143,9 +140,6 @@ namespace Maneuver
           m_waypoints_lat.push_back(lat);
 
           iteration++;
-          inf("x_next after rotate: %f", x_next);
-          inf("y_next after rotate: %f", y_next);
-             
         } 
         
         inf("List of waypoints complete");
