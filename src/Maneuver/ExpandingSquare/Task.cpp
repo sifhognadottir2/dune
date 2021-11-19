@@ -38,9 +38,6 @@ using namespace DUNE::Coordinates;
 
 namespace Maneuver
 {
-  //! Insert short task description here.
-  //!
-  //! Insert explanation on task behaviour here.
   //! @author Sif Hognadottir
   namespace ExpandingSquare
   {
@@ -50,8 +47,6 @@ namespace Maneuver
     {
       //! Maneuver 
       IMC::ExpandingSquare m_maneuver;
-      //! EstimatedState
-      //IMC::EstimatedState m_state;
       //! DesiredPath
       IMC::DesiredPath m_path;
       //! Waypoints
@@ -77,29 +72,36 @@ namespace Maneuver
         if (maneuver->getSource() != getSystemId())
           return;
 
-        m_maneuver = *maneuver;
-        m_hstep = maneuver->hstep;
-        m_curve_right = maneuver->curve_right;
+        m_maneuver      = *maneuver;
+        m_hstep         = maneuver->hstep;
+        m_curve_right   = maneuver->curve_right;
 
+        // Initialize variables needed for waypoint calculation.
         double x_next = 0;
         double y_next = 0;
         double x_prev = 0;
         double y_prev = 0;
         
         int iteration = 0;
+
         int x_dir;
         int y_dir;
 
-        // Centre of expanding square maneuver
+        // Center of expanding square maneuver.
         double lat = maneuver->lat; 
         double lon = maneuver->lon;
 
+        // Add the center of the maneuver as the first waypoint 
         m_waypoints_lon.push_back(lon); 
         m_waypoints_lat.push_back(lat);
         
-
+        // As the square pattern of the maneuver expands, the distance
+        // the vehicle must travel is given by step_amount*hstep, in order
+        // to get an outward increasing spiral/pattern. 
         int step_amount = 1; 
 
+        // Sets the direction of the first turn of the 
+        // maneuver, based on m_curve_right parameter.
         if (m_curve_right) {
           x_dir = 1;
           y_dir = 1;
@@ -108,7 +110,7 @@ namespace Maneuver
           y_dir = -1;
         }
 
-        
+        // Calculation of waypoints
         while ((x_prev <= maneuver->width/2) && (y_prev <= maneuver->width/2)) {
           
           lat = maneuver->lat; 
@@ -136,6 +138,7 @@ namespace Maneuver
           // Add offset
           Coordinates::WGS84::displace(x_next,y_next,&lat,&lon);
 
+          // Add the calculated waypoint to the list of waypoints
           m_waypoints_lon.push_back(lon); 
           m_waypoints_lat.push_back(lat);
 
@@ -152,8 +155,9 @@ namespace Maneuver
         
 
         m_waypoint_count = 0;
+
         sendPath(m_waypoints_lat[m_waypoint_count],m_waypoints_lon[m_waypoint_count]);
-        inf("Sent first path");
+        inf("Sent first path of ExpandingSquare Maneuver");
       }
 
       void onPathControlState(const IMC::PathControlState* pcs) {
